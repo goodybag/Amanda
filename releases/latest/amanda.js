@@ -1781,7 +1781,7 @@ Validation.prototype.validateProperty = function(property, propertyValue, proper
     // Overwrite the ‘addError’ method
     context.addError = function(message) {
 
-      if (isObject(message)) {
+      if (message && isObject(message)) {
         return self.errors.push({
           property: message.property || property,
           propertyValue: message.propertyValue || propertyValue,
@@ -1838,8 +1838,8 @@ Validation.prototype.validateProperty = function(property, propertyValue, proper
   if (propertyAttributes.required !== true && isUndefined(propertyValue)) {
     return callback();
   }
-  
-  // Validate the property  
+
+  // Validate the property
   return each(self.attributes, iterator, callback);
 
 };
